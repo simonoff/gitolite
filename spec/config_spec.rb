@@ -227,7 +227,7 @@ describe Gitolite::Config do
         g = Gitolite::Config::Group.new('cool_group')
         ngroups = @config.groups.size
         @config.add_group(g)
-        @config.groups.size.should eql (ngroups + 1)
+        @config.groups.size.should == ngroups + 1
         @config.has_group?(:cool_group).should be true
       end
 
