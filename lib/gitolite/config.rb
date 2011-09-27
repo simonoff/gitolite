@@ -67,7 +67,6 @@ module Gitolite
       File.open(new_conf, "w") do |f|
         #Output groups
         @groups.each_value {|group| f.write group.to_s }
-
         gitweb_descs = []
         @repos.each do |k, v|
           f.write v.to_s
