@@ -1,7 +1,4 @@
 require 'tempfile'
-require File.join(File.dirname(__FILE__), 'config', 'repo')
-require File.join(File.dirname(__FILE__), 'config', 'group')
-
 module Gitolite
   class Config
     attr_accessor :repos, :groups, :filename
@@ -43,6 +40,7 @@ module Gitolite
     end
 
     def add_group(group, overwrite = false)
+    def add_group(group, owerwrite = false)
       raise ArgumentError, "Group must be of type Gitolite::Config::Group!" unless group.instance_of? Gitolite::Config::Group
       @groups[group.name] = group
     end
