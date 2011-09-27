@@ -15,9 +15,9 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "gitolite"
 
   s.add_development_dependency "rspec", "~> 2.6.0"
-  s.add_development_dependency "forgery", "~> 0.5.0"
-  s.add_development_dependency "rdoc", "~> 3.9.4"
-  s.add_development_dependency "rcov", "~> 0.9.11"
+  s.add_development_dependency "forgery", "~> 0.3.8"
+  s.add_development_dependency "rake", ">= 0"
+  s.add_development_dependency "bundler", ">= 1.0.18"
   s.add_dependency "grit", "~> 2.4.1"
   s.add_dependency "hashery", "~> 1.4.0"
 
