@@ -64,8 +64,8 @@ module Gitolite
           nil
         else
           desc = "#{@name} "
-          desc += "\"#{@owner}\" " unless @owner.nil?
-          desc += "= \"#{@description}\""
+          desc << '"' + @owner + '" ' unless @owner.nil?
+          desc << '= "' + @description + '"'
         end
       end
 
