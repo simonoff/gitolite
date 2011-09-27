@@ -12,8 +12,9 @@ GEM
     grit (2.4.1)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
-    mime-types (1.16)
-    rake (0.9.2)
+    mime-types (1.17.2)
+    rake (0.9.2.2)
+    rdoc (3.9.4)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -30,4 +31,5 @@ DEPENDENCIES
   forgery (~> 0.5.0)
   gitolite!
   rake
+  rdoc (~> 3.9.4)
   rspec (~> 2.6.0)
