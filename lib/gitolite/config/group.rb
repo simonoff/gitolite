@@ -7,7 +7,7 @@ module Gitolite
 
       def initialize(name)
         @name = name
-        @gl_name = "@#{name}"
+        @gl_name = "#{Gitolite::Constants::GROUP_PREFIX}#{name}"
         @users = []
       end
 

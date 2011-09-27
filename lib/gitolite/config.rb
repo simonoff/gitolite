@@ -91,7 +91,7 @@ module Gitolite
       #https://github.com/sitaramc/gitolite/blob/pu/src/gl-compile-conf#cleanup_conf_line
       def cleanup_config_line(line)
         #remove comments, even those that happen inline
-        line.gsub!(/^((".*?"|[^#"])*)#.*/) {|m| m=$1}
+        line.gsub!(Constants::COMMENTS_REGEXP) {|m| m=$1}
 
         #fix whitespace
         line.gsub!('=', ' = ')
@@ -110,7 +110,7 @@ module Gitolite
 
           case line.strip
             #found a repo definition
-            when /^repo (.*)/
+            when Constants::REPO_REGEXP
               #Empty our current context
               context = []
 
@@ -121,7 +121,7 @@ module Gitolite
                 @repos[r] = Repo.new(r) unless has_repo?(r)
               end
             #repo permissions
-            when /^(-|C|R|RW\+?(?:C?D?|D?C?)) (.* )?= (.+)/
+            when Constants::PERMS_REGEXP
               perm = $1
               refex = $2 || ""
               users = $3.split
@@ -130,7 +130,7 @@ module Gitolite
                 @repos[c].add_permission(perm, refex, users)
               end
             #repo git config
-            when /^config (.+) = ?(.*)/
+            when Constants::REPO_GIT_CONFIG_REGEXP
               key = $1
               value = $2
 
@@ -138,14 +138,14 @@ module Gitolite
                 @repos[c].set_git_config(key, value)
               end
             #group definition
-            when /^@(\S+) = ?(.*)/
+            when Constants::GROUP_REGEXP
               group = $1
               users = $2.split
 
               @groups[group] = Group.new(group) unless has_group?(group)
               @groups[group].add_users(users)
             #gitweb definition
-            when /^(\S+)(?: "(.*?)")? = "(.*)"$/
+            when Constants::GITWEB_REGEXP
               repo = $1
               owner = $2
               description = $3
