@@ -67,7 +67,7 @@ module Gitolite
       File.open(new_conf, "w") do |f|
         @groups.each do |k,v|
           members = v.join(' ')
-          f.write "#{k.ljust(20)}=  #{members}\n"
+          f.write "@#{k.ljust(20)}=  #{members}\n"
         end
 
         gitweb_descs = []
