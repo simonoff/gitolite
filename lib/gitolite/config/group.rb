@@ -7,8 +7,7 @@ module Gitolite
       attr_accessor :name, :users
 
       def initialize(name)
-        @name = name
-        @gl_name = "#{Gitolite::Constants::GROUP_PREFIX}#{name}"
+        @name = name.gsub(Gitolite::Constants::GROUP_PREFIX, '')
         @users = []
       end
 
@@ -40,7 +39,8 @@ module Gitolite
 
       def to_s
         members = @users.join(' ')
-        "#{@name.ljust(20)}= #{members}\n"
+        name = "#{Gitolite::Constants::GROUP_PREFIX}#{@name}"
+        "#{name.ljust(20)}= #{members}\n"
       end
     end
   end
